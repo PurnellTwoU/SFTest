@@ -1,0 +1,43 @@
+<apex:page controller="SFConnectionDemoController" sidebar="false" tabStyle="Contact">
+    <apex:form id="frm">
+    <apex:actionFunction name="search" action="{!search}" reRender="frm" status="st"/>
+        <apex:sectionHeader title="Apex Toolkit Salesforce Connection " subtitle="Contact Search Demo"/>
+        <apex:pageblock >
+            <apex:pagemessages ></apex:pagemessages>
+            <apex:actionStatus startText="Fetching Remote Data..." id="st" startStyle="color:green;"/>
+            <apex:pageBlockSection columns="1" title="Aslam Bari: http://www.aslambari.com">
+               <apex:pageblockSectionItem >
+                   <apex:outputLabel >Username <font color="red">*</font></apex:outputLabel><apex:inputText value="{!username}" required="true"/>
+               </apex:pageblockSectionItem>
+                <apex:pageblockSectionItem >
+                   <apex:outputLabel >Password <font color="red">*</font></apex:outputLabel><apex:inputsecret value="{!password}" required="true"/>
+               </apex:pageblockSectionItem>
+                <apex:pageblockSectionItem >
+                   <apex:outputLabel >SecurityToken</apex:outputLabel><apex:inputText value="{!securityToken}"/>
+               </apex:pageblockSectionItem>
+               <apex:pageblockSectionitem >
+                  <apex:outputLabel ></apex:outputLabel><apex:commandButton value="Search" onclick="search();return false;"/>
+               </apex:pageblockSectionitem> 
+               Don't worry! I am not going to store your username, password :)   
+            </apex:pageblockSection>
+            <div class="pbBody">
+            <table class="list" width="100%" cellspacing="0" cellpadding="0" border="0">                
+                <tr class="headerRow">
+                <apex:repeat value="{!records}" var="row" rows="1">
+                    <apex:repeat value="{!row.fields}" var="fld">
+                        <th>{!fld.name}</th>
+                    </apex:repeat>
+                </apex:repeat>
+                </tr>
+            <apex:repeat value="{!records}" var="row">
+                <tr class="dataRow">
+                <apex:repeat value="{!row.fields}" var="fld">
+                    <td class="dataCell">{!fld.value}</td>
+                </apex:repeat>
+                </tr>                                
+            </apex:repeat>
+            </table>
+            </div>
+        </apex:pageblock> 
+    </apex:form>
+</apex:page>

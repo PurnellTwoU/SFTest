@@ -1,0 +1,43 @@
+<apex:page title="Complete User Account Event" StandardController="User_Account_Case__c" extensions="CompleteUserAccountEventController">
+    <apex:form >
+        <apex:variable var="ua" value="{!UserAccount}"/>
+        <apex:pageBlock title="Step 1: {!User_Account_Case__c.Type__c} {!User_Account_Case__c.Employee__r.name}'s {!User_Account_Case__c.Service__r.name}." rendered="{!NOT(ISBLANK(User_Account_Case__c.User_Account__c))}">
+            <apex:pageBlockSection columns="1">
+                <apex:outputField value="{!ua.Service_User_ID__c}"/>
+                <apex:outputField value="{!ua.Service_Username__c}"/>
+                <apex:outputLink target="_blank" id="link" value="{!ua.Link_to_User_Page_in_the_Service__c}" rendered="{!ua.Link_to_User_Page_in_the_Service__c <> 'Not Yet Available'}">Click here to go to the user.</apex:outputLink>  
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock title="Step 1: Create a {!User_Account_Case__c.Service__r.name} account based on this information." rendered="{!ISBLANK(User_Account_Case__c.User_Account__c)}">
+            <apex:pageBlockSection columns="1">
+                <apex:outputField value="{!User_Account_Case__c.Employee__c}"/>
+                <apex:outputText value="{!User_Account_Case__c.Employee__r.Email}" rendered="{!NOT(ISBLANK(User_Account_Case__c.Employee__r.Email))}" />
+                <apex:outputField value="{!User_Account_Case__c.Service__c}"/>
+                <apex:outputField value="{!User_Account_Case__c.Business_Role__r.Service_Role__c}" rendered="{!NOT(ISBLANK(User_Account_Case__c.Business_Role__r.Service_Role__c))}"/>
+                <apex:outputField value="{!User_Account_Case__c.Business_Role__r.Service_Profile__c}" rendered="{!NOT(ISBLANK(User_Account_Case__c.Business_Role__r.Service_Profile__c))}"/>
+                <apex:outputField value="{!User_Account_Case__c.Business_Role__r.Service_Permission_Sets__c}" rendered="{!NOT(ISBLANK(User_Account_Case__c.Business_Role__r.Service_Permission_Sets__c))}"/>
+                <apex:outputField value="{!User_Account_Case__c.Business_Role__r.Service_Packages__c}" rendered="{!NOT(ISBLANK(User_Account_Case__c.Business_Role__r.Service_Packages__c))}"/>
+                
+                <apex:outputText value="NEEDS GEOPOINTE" Style="color:red" rendered="{!User_Account_Case__c.Needs_Geopoint__c}"/>
+                <apex:outputField value="{!User_Account_Case__c.Notes__c}" Rendered="{!NOT(ISBLANK(User_Account_Case__c.Notes__c))}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock title="Step 2: Enter or update the following info (if it applies).">
+            <apex:pageMessages />
+            <apex:pageBlockSection columns="1">
+                <apex:inputField value="{!ua.Active__c}" />
+                <apex:inputField value="{!ua.Service_User_ID__c}"/>
+                <apex:inputField value="{!ua.Service_Username__c}"/>
+                <apex:inputfield value="{!ua.Initial_Password__c}"/>
+                <apex:inputField value="{!ua.Service_Role__c}"/>
+                <apex:inputField value="{!ua.Service_Profile__c}"/>
+                <apex:inputField value="{!ua.Access_Package__c}" />
+                <apex:inputField value="{!ua.Deprovisioned_Due_to_Inactivity__c}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Save" action="{!CompleteRequest}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

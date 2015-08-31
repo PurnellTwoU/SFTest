@@ -1,0 +1,57 @@
+Execute Anonymous
+
+================================
+
+
+	//string sSOQLstatement;
+	list<string> sOrgs = new list<string>();
+	list<AggregateResult> copadoOrgs = [SELECT 		copado__Org__r.name, 
+													Count_DISTINCT(name) 
+										FROM 		copado__Apex_Test_Result__c 
+									   	GROUP BY 	copado__Org__r.name];
+
+system.debug(copadoOrgs + '<=====================');
+
+    //list<string> sOrgs = new list<string>(sSOQLstatement);
+
+
+
+================================
+
+31.0 APEX_CODE,DEBUG;APEX_PROFILING,DEBUG;CALLOUT,INFO;DB,INFO;VALIDATION,INFO;WORKFLOW,INFO
+Execute Anonymous: 
+Execute Anonymous: 	//string sSOQLstatement;
+Execute Anonymous: 	list<string> sOrgs = new list<string>();
+Execute Anonymous: 	list<AggregateResult> copadoOrgs = [SELECT 		copado__Org__r.name, 
+Execute Anonymous: 													Count_DISTINCT(name) 
+Execute Anonymous: 										FROM 		copado__Apex_Test_Result__c 
+Execute Anonymous: 									   	GROUP BY 	copado__Org__r.name];
+Execute Anonymous: 
+Execute Anonymous: system.debug(copadoOrgs + '<=====================');
+Execute Anonymous: 
+Execute Anonymous:     //list<string> sOrgs = new list<string>(sSOQLstatement);
+Execute Anonymous: 
+13:12:43.091 (91813891)|EXECUTION_STARTED
+13:12:43.091 (91827813)|CODE_UNIT_STARTED|[EXTERNAL]|execute_anonymous_apex
+13:12:43.093 (93282404)|SOQL_EXECUTE_BEGIN|[4]|Aggregations:0|SELECT copado__Org__r.name, COUNT_DISTINCT(name) FROM copado__Apex_Test_Result__c GROUP BY copado__Org__r.name
+13:12:43.149 (149639333)|SOQL_EXECUTE_END|[4]|Rows:0
+13:12:43.149 (149910073)|USER_DEBUG|[9]|DEBUG|()<=====================
+13:12:43.149 (149963611)|CUMULATIVE_LIMIT_USAGE
+13:12:43.149 (149963611)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+13:12:43.149 (149963611)|CUMULATIVE_LIMIT_USAGE_END
+
+13:12:43.150 (150022993)|CODE_UNIT_FINISHED|execute_anonymous_apex
+13:12:43.151 (151335230)|EXECUTION_FINISHED

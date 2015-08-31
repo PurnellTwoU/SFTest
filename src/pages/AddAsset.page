@@ -1,0 +1,53 @@
+<apex:page StandardController="Case" extensions="AddAssetController" action="{!setAssets}" id="main" rendered="{!canAddAsset}">
+<script>
+function setFocusOnLoad() {} 
+function refreshPage()
+{
+    window.top.location='/{!Case.id}';
+    window.top.location.reload(true);
+}
+</script>
+
+ <apex:form id="theForm">
+ 
+ 	<apex:outputPanel rendered="{!error}" styleClass="errorMsg">
+    	<apex:messages /> 
+	</apex:outputPanel>
+	
+	<apex:pageBlock title="Asset Request Page" id="infoPanel">
+	
+		<apex:pageBlockButtons location="top">
+			<apex:commandButton value="Add Asset(s)" action="{!addAssets}" oncomplete="refreshPage()" immediate="true"/>
+     		<apex:commandButton value="Back" action="{!back}" immediate="true"/>			
+		</apex:pageBlockButtons>
+	
+		<apex:pageBlockTable value="{!assets}" var="asset" id="repeat">
+			
+			<apex:column headerValue="">    
+		    	<apex:inputCheckbox id="asset" value="{!asset.assetName}"/>
+			</apex:column>
+		
+			<apex:column headerValue="Asset Classification">
+				<apex:outputText value="{!asset.assetName}"/>
+			</apex:column>
+		 	
+		 	<apex:column headerValue="Specifications"> <apex:selectList size="1" id="aspec" rendered="{!(asset.fieldSet != 'Generic Asset')}">
+		         <apex:selectOptions value="{!asset.asstSpecifications}"/></apex:selectList> 
+		    </apex:column>
+		    
+			<apex:column headerValue="Date Needed"> 
+				<apex:inputField value="{!Case.Due_Date__c}" id="adate" />
+			</apex:column>
+			
+			<apex:column headerValue="Notes"> 
+				<apex:inputText id="anotes" />
+				<apex:inputHidden value="{!asset.assetId}" id="aid"/> 
+				<apex:inputHidden value="{!asset.fieldSet}" id="afieldset"/>
+			</apex:column>
+			
+		</apex:pageBlockTable>
+		
+	</apex:pageBlock>
+ 
+</apex:form>
+</apex:page>

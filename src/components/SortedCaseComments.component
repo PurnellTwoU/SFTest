@@ -1,0 +1,49 @@
+<apex:component access="global" controller="SortedCaseCommentsController">
+    <apex:attribute name="value" type="Case" AssignTo="{!c}" description="The Case whose comments will be sorted."/>
+    <apex:attribute name="SortDescending" type="Boolean" AssignTo="{!sortDescending}" description="If true case comments are sorted from oldest to newest. By default comments are sorted newest to oldest"/>
+    <apex:attribute name="HidePrivate" type="Boolean" AssignTo="{!hidePrivate}" description="If true non-public comments are not displayed. By default non-public comments are displayed."/>
+    <apex:attribute name="first" type="Integer" assignTo="{!f}" description="The first element in the collection visibly rendered, where 0 is the index of the first element in the set of data specified by the value attribute."/>
+    <apex:attribute name="rows" type="Integer" assignTo="{!r}" description="The maximum number of items in the collection that are rendered. If this value is less than the number of items in the collection, the items at the end of the collection are not repeated."/>
+    <apex:attribute name="ren" type="Boolean" assignTo="{!ren}" description="Indicates if comments after the first one should be displayed"/> 
+    <apex:variable var="sortedComments" value="{!sorted}"/>
+    
+    <apex:repeat var="comment" value="{!sortedComments}" first="{!f}" rows="1">
+        <tr>
+            <td style="padding:16px;">
+                <strong>
+                    <apex:outputText value="{!IF(comment.isPublished, "","(PRIVATE) ")}" /> <apex:outputField value="{!comment.CreatedDate}"/>:
+                </strong>
+                <!--If Context User is the creator, we assume it is from an external source. In this case E2C Premium has already included 'From: ____' in the comment text-->
+                <!--This must be changed if the E2C Premium Context User is ever changed-->
+                <p >{!IF(comment.CreatedByID = '005G000000216qOIAQ', '', 'From: ' + comment.CreatedBy.name)}</p>
+                <apex:outputField value="{!comment.CommentBody}"/>
+            </td>
+        </tr>
+    </apex:repeat>
+    
+    
+    <!--Prints the ordered list of comments associated with the given case. {!sorted} calls the getSorted() method in the "SortedCaseCommentsController"-->
+    <apex:repeat var="comment" value="{!sortedComments}" first="{!f+1}" rows="{!r-1}" rendered="{!ren}">
+        <tr>
+            <td style="border-top:dashed 1px; border-color:#c2c2c2;padding:16px;">
+                <strong>
+                    <apex:outputText value="{!IF(comment.isPublished, "","(PRIVATE) ")}" /><apex:outputField value="{!comment.CreatedDate}"/>:
+                </strong>
+                <!--<strong>{!comment.CreatedDate}:</strong>-->
+                <!--If Context User is the creator, we assume it is from an external source. In this case E2C Premium has already included 'From: ____' in the comment text-->
+                <!--This must be changed if the E2C Premium Context User is ever changed-->
+                <p >{!IF(comment.CreatedByID = '005G000000216qOIAQ', '', 'From: ' + comment.CreatedBy.name)}</p>
+                <apex:outputField value="{!comment.CommentBody}"/>
+            </td>
+        </tr>
+    </apex:repeat>
+         
+    <!--Allows the standard controller to "see" the linkage between the value attribute and the case comments properties.-->
+    <apex:variable var="ocomment" value="{!value.CaseComments}" rendered="false">
+        {!ocomment.CreatedBy.name}
+        {!ocomment.CreatedDate}
+        {!ocomment.CommentBody}
+        {!ocomment.IsPublished}
+    </apex:variable>
+  
+</apex:component>

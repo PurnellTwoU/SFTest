@@ -1,0 +1,719 @@
+{
+    "properties": [], 
+    "externalReferences": [], 
+    "innerClasses": [
+        {
+            "properties": [
+                {
+                    "modifiers": [
+                        "private"
+                    ], 
+                    "name": "OrgName", 
+                    "visibility": "PRIVATE", 
+                    "references": [], 
+                    "location": {
+                        "column": 18, 
+                        "line": 175
+                    }, 
+                    "type": "String"
+                }, 
+                {
+                    "modifiers": [
+                        "private"
+                    ], 
+                    "name": "ClassNames", 
+                    "visibility": "PRIVATE", 
+                    "references": [], 
+                    "location": {
+                        "column": 24, 
+                        "line": 176
+                    }, 
+                    "type": "LIST"
+                }, 
+                {
+                    "modifiers": [
+                        "private"
+                    ], 
+                    "name": "MethodNames", 
+                    "visibility": "PRIVATE", 
+                    "references": [], 
+                    "location": {
+                        "column": 30, 
+                        "line": 177
+                    }, 
+                    "type": "LIST"
+                }, 
+                {
+                    "modifiers": [
+                        "private"
+                    ], 
+                    "name": "ResultMessages", 
+                    "visibility": "PRIVATE", 
+                    "references": [], 
+                    "location": {
+                        "column": 30, 
+                        "line": 178
+                    }, 
+                    "type": "LIST"
+                }, 
+                {
+                    "modifiers": [
+                        "private"
+                    ], 
+                    "name": "Success", 
+                    "visibility": "PRIVATE", 
+                    "references": [], 
+                    "location": {
+                        "column": 30, 
+                        "line": 179
+                    }, 
+                    "type": "LIST"
+                }
+            ], 
+            "externalReferences": [], 
+            "innerClasses": [], 
+            "interfaces": [], 
+            "constructors": [
+                {
+                    "modifiers": [
+                        "private"
+                    ], 
+                    "name": "UnitTestMap", 
+                    "parameters": [
+                        {
+                            "type": "String", 
+                            "name": "sOrgsName"
+                        }, 
+                        {
+                            "type": "LIST", 
+                            "name": "sClassNames"
+                        }, 
+                        {
+                            "type": "LIST", 
+                            "name": "sMethodNames"
+                        }, 
+                        {
+                            "type": "LIST", 
+                            "name": "sResultMessages"
+                        }, 
+                        {
+                            "type": "LIST", 
+                            "name": "sSuccessful"
+                        }
+                    ], 
+                    "visibility": "PRIVATE", 
+                    "references": [], 
+                    "location": {
+                        "column": 3, 
+                        "line": 181
+                    }, 
+                    "type": null
+                }, 
+                {
+                    "modifiers": [
+                        "private"
+                    ], 
+                    "name": "UnitTestMap", 
+                    "parameters": [], 
+                    "visibility": "PRIVATE", 
+                    "references": [], 
+                    "location": {
+                        "column": 6, 
+                        "line": 190
+                    }, 
+                    "type": null
+                }
+            ], 
+            "namespace": null, 
+            "name": "UnitTestMap", 
+            "tableDeclaration": {
+                "type": "UnitTestMap", 
+                "modifiers": [
+                    "private"
+                ], 
+                "references": [], 
+                "location": {
+                    "column": 16, 
+                    "line": 173
+                }, 
+                "name": "UnitTestMap"
+            }, 
+            "key": null, 
+            "variables": [
+                {
+                    "type": "String", 
+                    "modifiers": [], 
+                    "references": [], 
+                    "location": {
+                        "column": 22, 
+                        "line": 181
+                    }, 
+                    "name": "sOrgsName"
+                }, 
+                {
+                    "type": "LIST", 
+                    "modifiers": [], 
+                    "references": [], 
+                    "location": {
+                        "column": 46, 
+                        "line": 181
+                    }, 
+                    "name": "sClassNames"
+                }, 
+                {
+                    "type": "LIST", 
+                    "modifiers": [], 
+                    "references": [], 
+                    "location": {
+                        "column": 78, 
+                        "line": 181
+                    }, 
+                    "name": "sMethodNames"
+                }, 
+                {
+                    "type": "LIST", 
+                    "modifiers": [], 
+                    "references": [], 
+                    "location": {
+                        "column": 111, 
+                        "line": 181
+                    }, 
+                    "name": "sResultMessages"
+                }, 
+                {
+                    "type": "LIST", 
+                    "modifiers": [], 
+                    "references": [], 
+                    "location": {
+                        "column": 147, 
+                        "line": 181
+                    }, 
+                    "name": "sSuccessful"
+                }
+            ], 
+            "id": null, 
+            "methods": []
+        }
+    ], 
+    "interfaces": [], 
+    "constructors": [], 
+    "namespace": null, 
+    "name": "ParseCapadoResults", 
+    "tableDeclaration": {
+        "type": "ParseCapadoResults", 
+        "modifiers": [
+            "public", 
+            "with sharing"
+        ], 
+        "references": [], 
+        "location": {
+            "column": 27, 
+            "line": 16
+        }, 
+        "name": "ParseCapadoResults"
+    }, 
+    "key": "01pZ0000000PhoJIAS", 
+    "variables": [
+        {
+            "type": "Date", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 8, 
+                "line": 21
+            }, 
+            "name": "dtToday"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 16, 
+                "line": 23
+            }, 
+            "name": "AllOrgs"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 16, 
+                "line": 24
+            }, 
+            "name": "OrgAttatchments"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 21, 
+                "line": 25
+            }, 
+            "name": "objUnitTestMaps"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 10, 
+                "line": 26
+            }, 
+            "name": "sJsonBlob"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 14, 
+                "line": 28
+            }, 
+            "name": "OrgName"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 15, 
+                "line": 31
+            }, 
+            "name": "sAttachment"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 16, 
+                "line": 43
+            }, 
+            "name": "sOrgs"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 25, 
+                "line": 44
+            }, 
+            "name": "copadoOrgs"
+        }, 
+        {
+            "type": "AggregateResult", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 24, 
+                "line": 51
+            }, 
+            "name": "org"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 48, 
+                "line": 62
+            }, 
+            "name": "sOrgName"
+        }, 
+        {
+            "type": "Date", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 63, 
+                "line": 62
+            }, 
+            "name": "dtDesireDate"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 16, 
+                "line": 66
+            }, 
+            "name": "sAttachments"
+        }, 
+        {
+            "type": "Datetime", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 12, 
+                "line": 67
+            }, 
+            "name": "dtStartDate"
+        }, 
+        {
+            "type": "Datetime", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 12, 
+                "line": 71
+            }, 
+            "name": "dtEndDate"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 37, 
+                "line": 73
+            }, 
+            "name": "objAttachments"
+        }, 
+        {
+            "type": "copado__Apex_Test_Result__c", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 38, 
+                "line": 82
+            }, 
+            "name": "objAtt"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 39, 
+                "line": 90
+            }, 
+            "name": "sAttachmentID"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 10, 
+                "line": 92
+            }, 
+            "name": "sSOQLstatement"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 10, 
+                "line": 93
+            }, 
+            "name": "sBlob"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 20, 
+                "line": 95
+            }, 
+            "name": "sAttachmentBlobs"
+        }, 
+        {
+            "type": "Attachment", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 21, 
+                "line": 103
+            }, 
+            "name": "att"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 47, 
+                "line": 111
+            }, 
+            "name": "sBlob"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 61, 
+                "line": 111
+            }, 
+            "name": "sOrgName"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 23, 
+                "line": 113
+            }, 
+            "name": "JsonMap"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 23, 
+                "line": 114
+            }, 
+            "name": "results"
+        }, 
+        {
+            "type": "UnitTestMap", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 15, 
+                "line": 116
+            }, 
+            "name": "ParsedUnitTestMap"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 16, 
+                "line": 117
+            }, 
+            "name": "sClsNames"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 22, 
+                "line": 118
+            }, 
+            "name": "sMethNames"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 22, 
+                "line": 119
+            }, 
+            "name": "sResultMsgs"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 22, 
+                "line": 120
+            }, 
+            "name": "sSuccess"
+        }, 
+        {
+            "type": "Integer", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 11, 
+                "line": 122
+            }, 
+            "name": "intClasses"
+        }, 
+        {
+            "type": "String", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 14, 
+                "line": 124
+            }, 
+            "name": "objClass"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 23, 
+                "line": 126
+            }, 
+            "name": "subCls"
+        }, 
+        {
+            "type": "LIST", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 20, 
+                "line": 128
+            }, 
+            "name": "objMethods"
+        }, 
+        {
+            "type": "Integer", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 19, 
+                "line": 131
+            }, 
+            "name": "i"
+        }, 
+        {
+            "type": "Map", 
+            "modifiers": [], 
+            "references": [], 
+            "location": {
+                "column": 30, 
+                "line": 133
+            }, 
+            "name": "m"
+        }
+    ], 
+    "id": "01pZ0000000PhoJIAS", 
+    "methods": [
+        {
+            "modifiers": [
+                "public"
+            ], 
+            "name": "RetrieveTestResults", 
+            "parameters": [], 
+            "visibility": "PUBLIC", 
+            "references": [], 
+            "location": {
+                "column": 14, 
+                "line": 18
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "private"
+            ], 
+            "name": "ListOfOrgs", 
+            "parameters": [], 
+            "visibility": "PRIVATE", 
+            "references": [], 
+            "location": {
+                "column": 23, 
+                "line": 40
+            }, 
+            "returnType": "LIST", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "private"
+            ], 
+            "name": "ListOfAttachments", 
+            "parameters": [
+                {
+                    "type": "String", 
+                    "name": "sOrgName"
+                }, 
+                {
+                    "type": "Date", 
+                    "name": "dtDesireDate"
+                }
+            ], 
+            "visibility": "PRIVATE", 
+            "references": [], 
+            "location": {
+                "column": 23, 
+                "line": 62
+            }, 
+            "returnType": "LIST", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "private"
+            ], 
+            "name": "AttachmentBlob", 
+            "parameters": [
+                {
+                    "type": "String", 
+                    "name": "sAttachmentID"
+                }
+            ], 
+            "visibility": "PRIVATE", 
+            "references": [], 
+            "location": {
+                "column": 17, 
+                "line": 90
+            }, 
+            "returnType": "String", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "private"
+            ], 
+            "name": "ParseBlobToObject", 
+            "parameters": [
+                {
+                    "type": "String", 
+                    "name": "sBlob"
+                }, 
+                {
+                    "type": "String", 
+                    "name": "sOrgName"
+                }
+            ], 
+            "visibility": "PRIVATE", 
+            "references": [], 
+            "location": {
+                "column": 22, 
+                "line": 111
+            }, 
+            "returnType": "UnitTestMap", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "private"
+            ], 
+            "name": "FormattedResults", 
+            "parameters": [], 
+            "visibility": "PRIVATE", 
+            "references": [], 
+            "location": {
+                "column": 15, 
+                "line": 158
+            }, 
+            "returnType": "void", 
+            "type": null
+        }, 
+        {
+            "modifiers": [
+                "private"
+            ], 
+            "name": "OPTIONS", 
+            "parameters": [], 
+            "visibility": "PRIVATE", 
+            "references": [], 
+            "location": {
+                "column": 15, 
+                "line": 166
+            }, 
+            "returnType": "void", 
+            "type": null
+        }
+    ]
+}

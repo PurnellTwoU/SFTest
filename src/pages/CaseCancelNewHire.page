@@ -1,0 +1,38 @@
+<!--
+ Added to NewHire app 4/19/2014
+ Requested in SF-6850, per the needs of SF-6693.
+
+ Uses the CaseCancelNewHire controller to cancel the Case, 
+ along with all of its child User_Account_Case__c and 
+ Asset_Case__c records. 
+
+ The need for this action aries when the following happens:
+
+ 1. A person is considered for employment.
+
+ 2. Using the NewHires app, a provisioning Case is created, along 
+    with User_Account_Case__c and Asset_Case__c records for various
+    resources to be provisioned for the new employee.
+
+ 3. The employment process falls through, and it is decided that the
+    person will not be hired after all.
+
+ 4. The Case is cancelled.
+
+ If Step 4 is performed via standard Case cancellation, the child 
+ User_Account_Case__c and Asset_Case__c records are not cancelled.
+
+ This page and its accompanying controller (CaseCancelNewHireController) 
+ can replace a standard "Close Case" button so that when the button is 
+ clicked, child records are cancelled in addition the the Case itself.
+
+ To use this page, create a custom button or link to it, with the 
+ "id" URL parameter set to the Case ID. When clicked, the page will 
+ perform the aforementioned actions and then forward to the standard 
+ Case detail page.
+ 
+--><apex:page standardController="Case"
+    extensions="CaseCancelNewHireController"
+    action="{!CancelAllProvisioning}" 
+><!-- No UI for this page. All actions are performed on page load. -->
+</apex:page>

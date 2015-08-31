@@ -1,0 +1,20 @@
+<apex:page standardController="User_Account_Case__c" extensions="RequestUniversityEmail">
+    <apex:messages />
+    <apex:form >
+        <apex:pageBlock mode="edit" title="{!User_Account_Case__c.Service__r.name} for {!User_Account_Case__c.Case__r.prFirst_Name__c} {!User_Account_Case__c.Case__r.prLastName__c}" >
+            <apex:pageBlockSection columns="1">
+                <apex:outputField label="To" value="{!User_Account_Case__c.Service__r.External_Contacts__c}" id="ToAddresses"/>
+                <apex:outputText label="CC" value="{!CCAddresses}" id="CCAddresses"/>
+                <apex:inputText label="Subject" value="{!subject}" maxlength="80" size="80"/>
+                <apex:inputTextarea label="Body" value="{!body}" rows="20" cols="80"/>
+                <apex:repeat value="{!attachments}" var="a">
+                    <apex:inputFile value="{!a.Body}" fileName="{!a.Name}" contentType="{!a.ContentType}" size="80"/>
+                </apex:repeat>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                    <apex:commandButton value="Send Email" action="{!send}"/>
+                    <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

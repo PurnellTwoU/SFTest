@@ -1,0 +1,50 @@
+<apex:page standardController="Case" extensions="UpdateContactOnCaseExtensions">
+<apex:outputPanel id="messages" styleClass="errorMsg">
+		<apex:messages /> 
+</apex:outputPanel>
+<apex:detail />
+<apex:form >
+        <apex:actionFunction name="CallUpdateContact" action="{!updateContact}" rerender="messages"/>  
+        <apex:actionFunction name="CallNotUpdateContact" action="{!notUpdateContact}" rerender="messages"/>        
+</apex:form>
+
+<script type="text/javascript">
+var cont = '{!Case.prEmployee__c}';
+
+if(cont != null && cont != '')
+{
+    if({!NeedsBusinessRole})
+    {
+        alert('A Salesforce Business Role is required because this Case has at least one open request for a Salesforce Account.'+ 
+              '\n\nPlease fill in the Salesforce Business Role before updating this Contact.');
+        CallNotUpdateContact();
+    }
+    else
+    {
+    	var result = confirm('Are you sure you want to continue?\n' + ' ' +
+    						 '\n' + ' ' +
+    							'This action can only be done once.'+
+    							' You will no longer be able to make changes to this contact from this case.'+
+    							' Be sure that all information is correct before you proceed.'+
+    							' Also, keep in mind that these changes will now be visible to anyone who can view Contacts.');
+    	if(result == true)
+        {
+            CallUpdateContact();
+        }
+        else
+        {
+        	CallNotUpdateContact();
+        }
+    }
+
+}
+
+else
+{
+	alert('No contact present.');
+	CallNotUpdateContact();
+} 
+
+ 
+</script>
+</apex:page>

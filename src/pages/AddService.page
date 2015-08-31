@@ -1,0 +1,53 @@
+<apex:page StandardController="Case" extensions="AddServiceController" action="{!setServices}" id="main" rendered="{!canAddService}" >
+<script>
+function setFocusOnLoad() {} 
+function refreshPage()
+{
+    window.top.location='/{!Case.id}';
+    window.top.location.reload(true);
+}
+</script>
+
+  <apex:form id="theForm">
+  
+	  <apex:outputPanel id="messages" rendered="{!error}">
+			<apex:messages />
+	  </apex:outputPanel>
+	  
+	  <apex:pageBlock title="User Account Request Page" id="infoPanel">
+	  
+	  	<apex:pageBlockButtons location="top">
+		  	<apex:commandButton value="Add User Account(s)" action="{!addservices}" oncomplete="refreshPage()"/>
+	        <apex:commandButton value="Back" action="{!back}"/>
+	  	</apex:pageBlockButtons>
+	  	
+        <apex:pageBlockTable value="{!services}" var="ser" id="repeat" styleclass="bor1" cellpadding="3px" >
+		   
+		   <apex:column styleClass="bor" headerClass="bor2" headerValue="">  
+		   	<apex:inputCheckbox id="service" value="{!ser.serviceName}"/> 
+		   </apex:column>
+		   
+		   <apex:column styleClass="bor" headerClass="bor2" headerValue="Service">
+		   	<apex:outputText value="{!ser.serviceName}"/>
+		   </apex:column>
+		   
+		   <apex:column styleClass="bor" headerClass="bor2" headerValue="Date Needed">
+		   	<apex:inputField value="{!Case.Due_Date__c}" id="sdate" />
+		   </apex:column>
+		   
+           <apex:column styleClass="bor" headerClass="bor2" headerValue="Access Package">
+		   	<apex:selectList size="1" rendered="{!NOT(ISBLANK(ser.accessPackages))}" id="accesspackage">
+		    	<apex:selectOptions value="{!ser.accessPackages}"/>
+		    </apex:selectList>
+		   </apex:column>
+           
+		   <apex:column styleClass="bor" headerClass="bor2" headerValue="Notes"> 
+		   	<apex:inputText id="snotes" />
+		    <apex:inputHidden value="{!ser.serviceId}" id="sid"/> 
+		    <apex:inputHidden value="{!ser.fieldSet}" id="sfieldset"/>
+		   </apex:column>
+		   
+		  </apex:pageBlockTable>
+	  </apex:pageBlock>
+    </apex:form>
+</apex:page>

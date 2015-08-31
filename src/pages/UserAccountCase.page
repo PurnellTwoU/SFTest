@@ -1,0 +1,182 @@
+<apex:page standardController="Case" extensions="UserAccountCaseExtension">
+
+<script>
+
+//
+// Prevents the first input field (usually a calendar) from
+// automatically stealing focus when the page loads, obscuring 
+// other rows in the table.
+window.setFocusOnLoad = function() {};
+
+// The above works by overriding one of Salesforce's (non-public) 
+// legacy Javascript functions with a do-nothing implementation, 
+// thus blotting out the function's effects when Salesforce calls it. 
+//
+// This is an ugly, unsafe hack but unfortunately, it's currently 
+// the only dependable solution available.
+// 
+// Salesforce, please fix this!!
+//
+// http://boards.developerforce.com/t5/Visualforce-Development/inputField-Calendar-Widget/m-p/70897
+// http://boards.developerforce.com/t5/Visualforce-Development/How-to-remove-focus-from-first-input-field/td-p/105445
+//
+
+</script>
+
+<style type="text/css">
+.userAccountCase { border-top: 2px solid #319431; }
+.userAccount     { border-top: 2px solid #493533; }
+</style>
+
+<apex:form id="theForm">
+
+	<apex:outputPanel id="messages">
+		<apex:messages />
+	</apex:outputPanel>
+  	
+	<apex:pageBlock title="User Accounts and Requests" id="infoPanel">
+	<!-- This panel lists Open User_Account_Case__c Records -->
+	
+		<apex:pageBlockButtons location="top">
+			<apex:commandButton value="Request New User Account" action="{!requestUserAccount}" rendered="{!canRequestUserAccount}" />
+		</apex:pageBlockButtons>
+		
+		<apex:tabPanel id="requestTabs" selectedTab="userAccounts" switchType="client">
+				
+		<apex:tab styleClass="userAccount" label="User Accounts ({! userAccountCount })" id="userAccountsTab" name="userAccounts">
+		<apex:pageBlockTable id="userAccountList" value="{!userAccountRows}" var="r">
+
+	       	<apex:column headerValue="Number">
+	       		<apex:outputLink value="/{! r.obj.Id }" target="_blank" title="View this User Account">{!r.obj.Name}</apex:outputLink>
+	       	</apex:column>
+       
+	       	<apex:column headerValue="Active">
+	       		<apex:outputField value="{!r.obj.Active__c}" />
+	       	</apex:column>
+        	
+	       	<apex:column headerValue="Service">
+	       		<apex:outputLink value="/{!r.obj.Service__c}" target="_blank" title="View this Service">{!r.obj.Service__r.Name}</apex:outputLink>
+	       	</apex:column>
+       	
+	       	<apex:column headerValue="Details">
+	       		<apex:outputText value="{!r.obj.Detail_Summary__c}" />
+	       	</apex:column>
+       	
+	       	<apex:column headerValue="">                 		
+	       		
+	       		<apex:outputPanel rendered="{! r.canDeactivate }" layout="block">
+	       		    
+	       		    <!-- A Deactivation button --> 
+	       		    <apex:commandButton action="{!requestDeactivation}" value="Request Deactivation" reRender="theForm">
+	       				<apex:param name="editid" value="{!r.obj.Id}" />
+	       			</apex:commandButton>
+	       			&nbsp;on&nbsp;       
+	       			          			
+	       			<!-- The User_Account_Case__c.Date__c field. -->
+	       			<apex:inputField value="{! r.requestPrototype.Date__c }" />
+	       			&nbsp;
+	       			
+	       			<!-- The User_Account_Case__c.Notes__c field. -->
+	       			<apex:inputField value="{! r.requestPrototype.Notes__c }" />
+	       			
+	       		</apex:outputPanel>
+	       		
+	       		<apex:outputPanel rendered="{! r.canReactivate }" layout="block">    
+	       		    
+	       		    <!-- A Reactivation button -->         		
+	       			<apex:commandButton action="{!requestActivation}" value="Request Reactivation" reRender="theForm">
+	       				<apex:param name="editid" value="{!r.obj.Id}" />
+	       			</apex:commandButton>
+	       			
+	       			&nbsp;on&nbsp;
+	       			                 			
+	       			<!-- The User_Account_Case__c.Date__c field. -->                 			
+	       			<apex:inputField value="{! r.requestPrototype.Date__c}" />
+	       			&nbsp;
+	       			
+	       			<!-- The User_Account_Case__c.Notes__c field. -->                 			
+	       			<apex:inputField value="{! r.requestPrototype.Notes__c }" />                			
+	       			
+	       		</apex:outputPanel>               		
+	       		
+	       		<apex:outputPanel rendered="{! r.hasPendingReactivation }" layout="block">
+	       		Reactivation Requested
+	       		</apex:outputPanel>  
+	       		
+	       		<apex:outputPanel rendered="{! r.hasPendingDeactivation }" layout="block">                 		
+	       		Deactivation Requested
+	       		</apex:outputPanel>          		
+	       		                 		
+	       	</apex:column>
+	       	
+        </apex:pageBlockTable>
+		</apex:tab> 
+		
+		<apex:tab styleClass="userAccountCase" label="Open Requests ({! openUserAccountCaseCount })" name="openRequests" id="openRequestsTab">		
+		<apex:pageBlockTable id="openUserAccountCaseList" value="{!openUserAccountCaseRows}" var="r">
+   		
+			<apex:column headerValue="Status">
+			  	<apex:outputText value="{!r.obj.Status_Summary__c}" escape="false"/>
+			</apex:column>
+			     
+			<apex:column headerValue="Service">
+			  	<apex:outputLink value="/{!r.obj.Service__c}" target="_blank">{!r.obj.Service__r.Name}</apex:outputLink> 
+			</apex:column>
+			     
+			<apex:column headerValue="User Account">
+				<apex:outputLink value="/{!r.obj.User_Account__c}" target="_blank">{!r.obj.User_Account__r.Name}</apex:outputLink>
+			</apex:column>
+			     
+			<apex:column headerValue="Details">
+				<apex:outputText escape="false" value="{!r.obj.Detail_Summary__c}" />
+			</apex:column>
+			    
+			<apex:column headerValue="Due Date">
+				<apex:outputField value="{!r.obj.Date__c}"></apex:outputField> 
+			</apex:column>
+			
+		    <apex:column headerValue="" style=" border-top: 1px solid #ECF1EF;" headerClass="bor2">
+		    
+		    	<!-- If we can cancel this request, display a Cancel Request button. -->
+		    	<apex:commandButton rendered="{!r.canCancel}" value="Cancel Request" action="{!cancelRequest}"  reRender="theForm">
+		        	<apex:param name="editid" value="{!r.obj.id}" />
+		    	</apex:commandButton>
+		    	
+			</apex:column>   
+			                       
+		</apex:pageBlockTable>
+		</apex:tab>
+		
+		<apex:tab styleClass="userAccountCase" label="Complete Requests ({! completeUserAccountCaseCount })" name="completeRequests" id="completeRequestsTab">
+		<apex:pageBlockTable id="completeUserAccountCaseList" value="{!completeUserAccountCaseRows}" var="r">
+	   <!-- This panel lists Complete User_Account_Case__c Records -->
+	   		
+			<apex:column headerValue="Status">
+			  	<apex:outputText value="{!r.obj.Status_Summary__c}" escape="false"/>
+			</apex:column>
+			     
+			<apex:column headerValue="Service">
+			  	<apex:outputLink value="/{!r.obj.Service__c}" target="_blank">{!r.obj.Service__r.Name}</apex:outputLink> 
+			</apex:column>
+			     
+			<apex:column headerValue="User Account">
+				<apex:outputLink value="/{!r.obj.User_Account__c}" target="_blank">{!r.obj.User_Account__r.Name}</apex:outputLink>
+			</apex:column>
+			     
+			<apex:column headerValue="Details">
+				<apex:outputText escape="false" value="{!r.obj.Detail_Summary__c}" />
+			</apex:column>
+			    
+			<apex:column headerValue="Date Completed">
+				<apex:outputField value="{!r.obj.Date_Complete__c}"></apex:outputField> 
+			</apex:column>
+						                       
+		</apex:pageBlockTable>
+		</apex:tab>	
+	
+	</apex:tabPanel>
+		
+	</apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

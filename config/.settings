@@ -1,0 +1,19 @@
+{
+    "username": "panthony.hub@2u.com.sf14119", 
+    "environment": "sandbox", 
+    "project_name": "SF-14119", 
+    "workspace": "/Users/panthony/Documents/workspace", 
+    "org_url": "", 
+    "namespace": "", 
+    "id": "BE5HMZ3QGOT6VR2M91WB7V1Q94YCTEUM", 
+    "metadata_container": "1dcZ00000002PVDIA2", 
+    "subscription": [
+        "ApexClass", 
+        "ApexComponent", 
+        "ApexPage", 
+        "ApexTrigger", 
+        "CustomObject", 
+        "Profile", 
+        "StaticResource"
+    ]
+}

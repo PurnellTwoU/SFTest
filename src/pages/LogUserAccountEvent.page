@@ -1,0 +1,6 @@
+<apex:page StandardController="Case" id="UserAccountPage">
+  <flow:interview name="User_Account_Selector" >
+      <apex:param name="vaDefaultContactID" value="{!Case.Contact}"/>
+      <apex:param name="vaCaseID" value="{!Case.ID}"/>
+  </flow:interview>
+</apex:page>
